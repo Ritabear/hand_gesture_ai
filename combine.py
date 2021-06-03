@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 # n=int(input("輸入:"))
 # mode_list=[0,1,2]
 
-# class MainWindow(QMainWindow):
+
 class MainWindow(QWidget):
      def __init__(self):
           super(MainWindow, self).__init__()
@@ -219,8 +219,17 @@ class SubWindow(QMainWindow):
           self.stackedWidget.addWidget(self.form1)
           self.stackedWidget.addWidget(self.form2)
           self.stackedWidget.addWidget(self.form3)
-
-
+          while True:
+               n=int(input("輸入:"))
+               mode_list=[0,1,2]
+               if n == mode_list[0]:
+                    self.stackedWidget.setCurrentIndex(0)
+               elif n == mode_list[1]:
+                    self.stackedWidget.setCurrentIndex(1)
+               elif n == mode_list[2]:
+                    self.stackedWidget.setCurrentIndex(2)
+               elif n == 5:
+                    break
           
           # 设置状态栏
           self.statusBar().showMessage("当前用户：")
@@ -228,6 +237,7 @@ class SubWindow(QMainWindow):
           # 窗口最大化
      #    self.showMaximized()
           ###### 三个按钮事件 ######
+          
           self.pushButton1.clicked.connect(self.on_pushButton1_clicked)
           self.pushButton2.clicked.connect(self.on_pushButton2_clicked)
           self.pushButton3.clicked.connect(self.on_pushButton3_clicked)
@@ -236,16 +246,12 @@ class SubWindow(QMainWindow):
      # 按钮一：打开第一个面板
      def on_pushButton1_clicked(self):
           self.stackedWidget.setCurrentIndex(0)
-
-
-     # 按钮二：打开第二个面板
      def on_pushButton2_clicked(self):
           self.stackedWidget.setCurrentIndex(1)
-
-
-     # 按钮三：打开第三个面板
      def on_pushButton3_clicked(self):
           self.stackedWidget.setCurrentIndex(2)
+
+
 
 
           
@@ -256,7 +262,7 @@ class SubWindow(QMainWindow):
           
           #置頂參數
           self.setWindowFlags(Qt.WindowStaysOnTopHint)
-          
+       
 
           #設定圖示，QIcon物件接收一個我們要顯示的圖片路徑作為引數。
           # self.setWindowIcon(QIcon('web3.png'))
@@ -267,10 +273,13 @@ class SubWindow(QMainWindow):
 
           self.show()
 
-
-if __name__ == '__main__':
+def start():
      app = QApplication([])
      window = MainWindow()
      window.show()
-     
      sys.exit(app.exec_())
+
+if __name__ == '__main__':
+
+     start()
+     
